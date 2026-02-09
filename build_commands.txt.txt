@@ -1,0 +1,7 @@
+# RISC-V build commands for test.c
+# These commands show how the test program is compiled
+# for an RV64I processor with Zba extension enabled.
+
+riscv64-unknown-elf-gcc -march=rv64i_zba -mabi=lp64 -O0 -S test.c -o test.s
+riscv64-unknown-elf-gcc -march=rv64i_zba -mabi=lp64 -nostdlib -Ttext=0x0 test.s -o test.elf
+riscv64-unknown-elf-objcopy -O verilog test.elf instr2_mem_init.hex

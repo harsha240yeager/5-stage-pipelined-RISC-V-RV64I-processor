@@ -1,0 +1,81 @@
+RISC-V RV64I + Zba Processor – Module Hierarchy
+===============================================
+
+Top-Level
+---------
+cpu_top
+ ├── Program_Counter (pc)
+ ├── Instruction_Memory (imem)
+ ├── IF_ID_pipeline_register
+ ├── Control_unit
+ ├── Register_file
+ ├── Immediate_generator
+ ├── Hazard_detection_unit
+ ├── Forwarding_unit
+ ├── ID_EX_pipeline_register
+ ├── ALU
+ ├── EX_MEM_pipeline_register
+ ├── Data_memory
+ └── MEM_WB_pipeline_register
+
+
+Detailed Pipeline Structure
+---------------------------
+
+Instruction Fetch (IF):
+ - Program_Counter
+ - Instruction_Memory
+
+Instruction Decode (ID):
+ - Control_unit
+ - Register_file
+ - Immediate_generator
+ - ID-stage bypass logic (from EX/MEM and MEM/WB)
+
+Execute (EX):
+ - ALU (RV64I + Zba operations)
+ - Forwarding_unit
+ - Branch / jump resolution logic
+
+Memory Access (MEM):
+ - Data_memory (load/store)
+
+Write Back (WB):
+ - MEM_WB_pipeline_register
+ - Register_file write port
+
+
+Pipeline Registers
+------------------
+ - IF_ID_pipeline_register
+ - ID_EX_pipeline_register
+ - EX_MEM_pipeline_register
+ - MEM_WB_pipeline_register
+
+
+Testbench
+---------
+Cpu_2_tb
+ - Clock & reset generation
+ - Instruction memory initialization
+ - Write-back trace
+ - Self-checking assertions
+ - Automatic simulation termination
+
+
+Supported Extensions
+--------------------
+ - RV64I base ISA
+ - Zba extension:
+   * SH1ADD
+   * SH2ADD
+   * SH3ADD
+
+
+Hazard Handling
+---------------
+ - EX-stage forwarding
+ - ID-stage bypass for two-source RAW hazards
+ - Load-use stall via hazard_detection_unit
+ - Branch flush logic
+  

@@ -1,0 +1,63 @@
+#include <stdint.h>
+
+/*
+ * RV64I + Zba Verification Program
+ *
+ * Demonstrates:
+ *  - Basic arithmetic operations
+ *  - Zba extension instructions (SH1ADD, SH2ADD, SH3ADD)
+ *  - Load/store memory access
+ *  - Branching logic
+ *  - RAW hazards requiring forwarding / ID-stage bypass
+ */
+
+volatile int64_t mem[4];
+
+int main(void)
+{
+    int64_t a = 5;     // x1
+    int64_t b = 10;    // x2
+
+    /*
+     * Zba instructions:
+     * These expressions are lowered to SHxADD instructions
+     * when compiled with -march=rv64i_zba
+     */
+
+    int64_t c = (a << 1) + b;   // SH1ADD: scaled add (2*a + b)
+    int64_t d = (a << 2) + b;   // SH2ADD: scaled add (4*a + b)
+    int64_t e = (a << 3) + b;   // SH3ADD: scaled add (8*a + b)
+
+    /*
+     * Basic arithmetic + RAW hazards
+     * These depend on results produced immediately above
+     */
+    int64_t f = c + d;          // ADD: 20 + 30 = 50
+    int64_t g = d - e;          // SUB: 30 - 50 = -20
+
+    /*
+     * Branching logic
+     * Forces conditional branch instructions (BEQ/BNE/BLT)
+     */
+    int64_t branch_result = 0;
+    if (g < 0) {                // Branch taken
+        branch_result = 1;
+    } else {
+        branch_result = 0;
+    }
+
+    /*
+     * Memory access
+     * Store followed by load
+     */
+    mem[0] = c;                 // Store 20 to memory
+    int64_t h = mem[0];         // Load 20 from memory
+
+    /*
+     * Prevent compiler from optimizing away results
+     */
+    volatile int64_t sink;
+    sink = f + g + h + branch_result;
+
+    return (int)sink;
+}

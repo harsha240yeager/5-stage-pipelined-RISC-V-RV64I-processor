@@ -1,0 +1,5 @@
+
+
+This project implements a five-stage pipelined RISC-V processor supporting the RV64I base ISA along with the Zba address-generation extension. The pipeline consists of IF, ID, EX, MEM, and WB stages, with dedicated pipeline registers between each stage. The processor includes EX-stage forwarding and ID-stage bypass logic to resolve RAW data hazards without requiring compiler-inserted NOPs, as well as load-use hazard detection and branch flush handling.
+
+The Zba instructions SH1ADD, SH2ADD, and SH3ADD are decoded in the control unit and executed in the ALU by performing a combined shift and add operation. These instructions are particularly useful for efficient address generation and scaled index calculations. A C test program was written to demonstrate arithmetic operations, memory access, branching logic, and three distinct Zba instruction usages. The build flow used to generate the instruction memory image is documented in build_commands.txt. The resulting machine code was loaded into instruction memory and verified through RTL simulation using a self-checking testbench, which confirms correct architectural state at the end of execution.
