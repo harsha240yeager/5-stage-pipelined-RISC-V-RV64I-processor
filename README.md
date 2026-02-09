@@ -77,4 +77,20 @@ A single-page pipeline diagram is available in the `docs/` directory.
 │
 └── README.md
 
+🧪 Verification
 
+Verification is performed using a self-checking SystemVerilog testbench.
+
+Test Program Highlights
+
+Basic arithmetic (ADD, SUB, ADDI)
+
+Memory access (LD, SD)
+
+Branching logic (if → BLT)
+
+Three distinct Zba instructions
+
+Back-to-back dependent instructions to stress hazard handling
+
+At the end of simulation, the testbench checks the architectural register file and prints
