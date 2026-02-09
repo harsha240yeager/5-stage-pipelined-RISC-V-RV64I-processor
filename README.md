@@ -40,47 +40,41 @@ Copy code
 
 A single-page pipeline diagram is available in the `docs/` directory.
 
----
-
 ## 📁 Repository Structure
 
+```text
 .
 ├── rtl
-│ ├── cpu_top.sv
-│ ├── alu.sv
-│ ├── control_unit.sv
-│ ├── program_counter.sv
-│ ├── instruction_memory.sv
-│ ├── data_memory.sv
-│ ├── register_file.sv
-│ ├── immediate_generator.sv
-│ ├── if_id_pipeline_register.sv
-│ ├── id_ex_pipeline_register.sv
-│ ├── ex_mem_pipeline_register.sv
-│ ├── mem_wb_pipeline_register.sv
-│ ├── forwarding_unit.sv
-│ ├── hazard_detection_unit.sv
-│ └── shared_types.sv
+│   ├── cpu_top.sv
+│   ├── alu.sv
+│   ├── control_unit.sv
+│   ├── program_counter.sv
+│   ├── instruction_memory.sv
+│   ├── data_memory.sv
+│   ├── register_file.sv
+│   ├── immediate_generator.sv
+│   ├── if_id_pipeline_register.sv
+│   ├── id_ex_pipeline_register.sv
+│   ├── ex_mem_pipeline_register.sv
+│   ├── mem_wb_pipeline_register.sv
+│   ├── forwarding_unit.sv
+│   ├── hazard_detection_unit.sv
+│   └── shared_types.sv
 │
 ├── tb
-│ └── tb_processor.sv
+│   └── tb_processor.sv
 │
 ├── software
-│ ├── test.c
-│ ├── instr2_mem_init.hex
-│ └── build_commands.txt
+│   ├── test.c
+│   ├── instr2_mem_init.hex
+│   └── build_commands.txt
 │
 ├── docs
-│ ├── pipeline_diagram.pdf
-│ ├── module_hierarchy.txt
-│ └── submission_explanation.txt
+│   ├── pipeline_diagram.pdf
+│   ├── module_hierarchy.txt
+│   └── submission_explanation.txt
 │
 └── README.md
-
-markdown
-Copy code
-
----
 
 ## 🧪 Verification
 
