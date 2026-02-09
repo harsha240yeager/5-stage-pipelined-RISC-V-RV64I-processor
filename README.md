@@ -43,7 +43,7 @@ A single-page pipeline diagram is available in the `docs/` directory.
 
 ### 📁 Repository Structure
 
-```text
+---
 .
 ├── rtl
 │   ├── cpu_top.sv
@@ -77,7 +77,7 @@ A single-page pipeline diagram is available in the `docs/` directory.
 │
 └── README.md
 
-### 🧪 Verification
+## 🧪 Verification
 
 Verification is performed using a self-checking SystemVerilog testbench.
 
