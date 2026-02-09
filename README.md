@@ -84,16 +84,7 @@ The complete build flow used to generate the instruction memory image is documen
 
 The design is intended to be simulated using **ModelSim / Questa**.
 
-### Typical Simulation Flow
-
-```tcl
-vlog *.sv
-vsim work.tb_processor
-run -all
-Instruction Memory Initialization
-
-$readmemh("instr2_mem_init.hex", dut.IMEM.memory);
-📌 Notes
+## 📌 Notes
 This is not an OS-capable core
 
 No CSR support, exceptions, or virtual memory
@@ -102,12 +93,12 @@ The design prioritizes pipeline correctness and hazard resolution over performan
 
 Zba instructions are implemented in compliance with the RISC-V specification
 
-🙌 Acknowledgments
+## 🙌 Acknowledgments
 Special thanks to Prof. Michael Dubois (University of Southern California) for foundational insights into processor pipeline architecture and hazard handling, which strongly influenced this design.
 
 Additional thanks to ChatGPT for acting as a technical assistant throughout the design, debugging, and verification process 🙂
 
-📬 Author
+## 📬 Author
 Harshavardhan Reddy Narra
 Master’s in Electrical Engineering (Computer Architecture)
 
