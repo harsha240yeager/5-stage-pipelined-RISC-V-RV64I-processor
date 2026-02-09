@@ -40,7 +40,7 @@ Copy code
 
 A single-page pipeline diagram is available in the `docs/` directory.
 
-
+---
 
 ## 📁 Repository Structure
 
@@ -77,50 +77,47 @@ A single-page pipeline diagram is available in the `docs/` directory.
 │   └── submission_explanation.txt
 │
 └── README.md
+🧪 Verification
+Verification is performed using a self-checking SystemVerilog testbench.
 
-IF → IF/ID → ID → ID/EX → EX → EX/MEM → MEM → MEM/WB → WB
-IF → IF/ID → ID → ID/EX → EX → EX/MEM → MEM → MEM/WB → WB
-## 🧪 Verification
+Test Program Highlights
+Basic arithmetic (ADD, SUB, ADDI)
 
-Verification is performed using a **self-checking SystemVerilog testbench**.
+Memory access (LD, SD)
 
-### Test Program Highlights
-- Basic arithmetic (`ADD`, `SUB`, `ADDI`)
-- Memory access (`LD`, `SD`)
-- Branching logic (`if` → `BLT`)
-- **Three distinct Zba instructions**
-- Back-to-back dependent instructions to stress hazard handling
+Branching logic (if → BLT)
+
+Three distinct Zba instructions
+
+Back-to-back dependent instructions to stress hazard handling
 
 At the end of simulation, the testbench checks the architectural register file and prints:
 
-ALL TESTS PASSED ✔
-
-yaml
+css
 Copy code
+ALL TESTS PASSED ✔
+Any mismatch triggers a $fatal, ensuring deterministic verification.
 
-Any mismatch triggers a `$fatal`, ensuring deterministic verification.
+🧾 Test Program (C)
+A C test program (test.c) is included to demonstrate:
 
----
+Arithmetic operations
 
-## 🧾 Test Program (C)
+Memory load / store
 
-A C test program (`test.c`) is included to demonstrate:
-- Arithmetic operations
-- Memory load / store
-- Branching logic
-- Zba instruction usage
+Branching logic
 
-The build flow used to generate the instruction memory image is documented in `build_commands.txt`.
+Zba instruction usage
 
----
+The build flow used to generate the instruction memory image is documented in build_commands.txt.
 
-## 🔧 Build & Simulation
-
-The processor is intended to be simulated using **ModelSim / Questa**.
+🔧 Build & Simulation
+The processor is intended to be simulated using ModelSim / Questa.
 
 Typical simulation flow:
 
-```tcl
+tcl
+Copy code
 vlog *.sv
 vsim work.tb_processor
 run -all
