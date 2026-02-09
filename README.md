@@ -43,7 +43,7 @@ A single-page pipeline diagram is available in the `docs/` directory.
 
 ### 📁 Repository Structure
 
----
+--- text
 .
 ├── rtl
 │   ├── cpu_top.sv
