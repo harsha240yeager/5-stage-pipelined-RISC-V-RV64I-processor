@@ -41,43 +41,6 @@ A single-page pipeline diagram is available in the `docs/` directory.
 ---
 
 
-### 📁 Repository Structure
-
-
-```text
-.
-├── rtl
-│   ├── cpu_top.sv
-│   ├── alu.sv
-│   ├── control_unit.sv
-│   ├── program_counter.sv
-│   ├── instruction_memory.sv
-│   ├── data_memory.sv
-│   ├── register_file.sv
-│   ├── immediate_generator.sv
-│   ├── if_id_pipeline_register.sv
-│   ├── id_ex_pipeline_register.sv
-│   ├── ex_mem_pipeline_register.sv
-│   ├── mem_wb_pipeline_register.sv
-│   ├── forwarding_unit.sv
-│   ├── hazard_detection_unit.sv
-│   └── hazard_detection_unit.sv
-│
-├── tb
-│   └── tb_processor.sv
-│
-├── software
-│   ├── test.c
-│   ├── instr2_mem_init.hex
-│   └── build_commands.txt
-│
-├── docs
-│   ├── pipeline_diagram.pdf
-│   ├── module_hierarchy.txt
-│   └── submission_explanation.txt
-│
-└── README.md
-
 ## 🧪 Verification
 
 Verification is performed using a self-checking SystemVerilog testbench.
@@ -95,3 +58,56 @@ Three distinct Zba instructions
 Back-to-back dependent instructions to stress hazard handling
 
 At the end of simulation, the testbench checks the architectural register file and prints
+
+ALL TESTS PASSED ✔
+
+Any mismatch triggers a $fatal, ensuring deterministic verification.
+
+🧾 Test Program (C)
+
+A C test program (test.c) is included to demonstrate:
+
+Arithmetic operations
+
+Memory load / store
+
+Branching logic
+
+Zba instruction usage
+
+The build flow used to generate the instruction memory image is documented in build_commands.txt.
+
+🔧 Build & Simulation
+
+The processor is intended to be simulated using ModelSim / Questa.
+
+Typical simulation flow:
+
+vlog *.sv
+vsim work.tb_processor
+run -all
+
+Instruction memory initialization:
+
+$readmemh("instr2_mem_init.hex", dut.IMEM.memory);
+
+
+📌 Notes
+
+This is not an OS-capable core (no CSR, exceptions, or virtual memory)
+
+The design focuses on pipeline correctness and hazard resolution, not performance optimization
+
+Zba instructions are implemented according to the RISC-V specification
+
+🙌 Acknowledgments
+
+Special thanks to Prof. Michael Dubois (University of Southern California) for foundational insights into processor pipeline architecture and hazard handling, which influenced the overall microarchitectural design of this project.
+Additional thanks to ChatGPT for acting as a technical assistant throughout the design, debugging, and verification process 🙂
+
+📬 Author
+
+Harshavardhan Reddy Narra
+Master’s in Electrical Engineering (Computer Architecture)
+📧 Email: hnarra@usc.edu
+🔗 LinkedIn: https://linkedin.com/in/harsha240
