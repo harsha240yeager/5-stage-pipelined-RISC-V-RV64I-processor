@@ -40,6 +40,8 @@ Copy code
 
 A single-page pipeline diagram is available in the `docs/` directory.
 
+
+
 ## 📁 Repository Structure
 
 ```text
@@ -76,8 +78,8 @@ A single-page pipeline diagram is available in the `docs/` directory.
 │
 └── README.md
 
----
-
+IF → IF/ID → ID → ID/EX → EX → EX/MEM → MEM → MEM/WB → WB
+IF → IF/ID → ID → ID/EX → EX → EX/MEM → MEM → MEM/WB → WB
 ## 🧪 Verification
 
 Verification is performed using a **self-checking SystemVerilog testbench**.
