@@ -29,8 +29,6 @@ The processor follows a classic 5-stage RISC pipeline:
 
 IF → IF/ID → ID → ID/EX → EX → EX/MEM → MEM → MEM/WB → WB
 
-markdown
-Copy code
 
 ### Key Architectural Highlights
 - Control signals are generated in the **ID stage**
@@ -42,7 +40,8 @@ A single-page pipeline diagram is available in the `docs/` directory.
 
 ---
 
-## 📁 Repository Structure
+
+### 📁 Repository Structure
 
 ```text
 .
@@ -61,7 +60,7 @@ A single-page pipeline diagram is available in the `docs/` directory.
 │   ├── mem_wb_pipeline_register.sv
 │   ├── forwarding_unit.sv
 │   ├── hazard_detection_unit.sv
-│   └── shared_types.sv
+│   └── hazard_detection_unit.sv
 │
 ├── tb
 │   └── tb_processor.sv
@@ -77,10 +76,14 @@ A single-page pipeline diagram is available in the `docs/` directory.
 │   └── submission_explanation.txt
 │
 └── README.md
+
+
 🧪 Verification
+
 Verification is performed using a self-checking SystemVerilog testbench.
 
 Test Program Highlights
+
 Basic arithmetic (ADD, SUB, ADDI)
 
 Memory access (LD, SD)
@@ -93,8 +96,6 @@ Back-to-back dependent instructions to stress hazard handling
 
 At the end of simulation, the testbench checks the architectural register file and prints:
 
-css
-Copy code
 ALL TESTS PASSED ✔
 Any mismatch triggers a $fatal, ensuring deterministic verification.
 
@@ -116,15 +117,11 @@ The processor is intended to be simulated using ModelSim / Questa.
 
 Typical simulation flow:
 
-tcl
-Copy code
 vlog *.sv
 vsim work.tb_processor
 run -all
 Instruction memory initialization:
 
-systemverilog
-Copy code
 $readmemh("instr2_mem_init.hex", dut.IMEM.memory);
 📌 Notes
 This is not an OS-capable core (no CSR, exceptions, or virtual memory)
