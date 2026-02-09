@@ -76,6 +76,8 @@ A single-page pipeline diagram is available in the `docs/` directory.
 │
 └── README.md
 
+---
+
 ## 🧪 Verification
 
 Verification is performed using a **self-checking SystemVerilog testbench**.
